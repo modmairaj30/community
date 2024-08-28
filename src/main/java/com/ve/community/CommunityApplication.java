@@ -17,3 +17,7 @@ public class CommunityApplication {
 public ModelMapper modelMapper() {
 	return new ModelMapper();
 }}
+
+
+
+

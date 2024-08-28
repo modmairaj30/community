@@ -1,13 +1,17 @@
 package com.ve.community.services;
 
+import com.ve.community.models.PermanentAddress;
+import com.ve.community.models.PresentAddress;
+import com.ve.community.models.ProfessionalDetails;
 import com.ve.community.models.Users;
-import com.ve.community.payloads.request.UsersRequest;
+import com.ve.community.payloads.request.*;
 import com.ve.community.payloads.response.UsersResponse;
 import com.ve.community.repository.UsersRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,6 +23,8 @@ public class UsersServiceImpl implements UsersService {
     private UsersRepository usersRepository;
     @Autowired
     private ModelMapper modelMapper;
+
+
 
     // @Override
     //public List<Users> getAllUsers() {
@@ -42,22 +48,13 @@ public class UsersServiceImpl implements UsersService {
         return  list_res;
     }
 
-
-
-    //@Override
-    // public Users
-    // public Users createUser(Users user) {
-    //   return usersRepository.save(user);
-    //  }
-
-
     @Override
     public Users createUser(UsersRequest usersRequest) {
-      /*  Users user = modelMapper.map(usersRequest, Users.class);
-        return usersRepository.save(user);*/
-        return null;
+        Users user = modelMapper.map(usersRequest, Users.class);
+        return usersRepository.save(user);
+        }
+
     }
 
 
 
-}
