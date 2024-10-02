@@ -7,6 +7,7 @@ import com.ve.community.payloads.request.LoginRequest;
 import com.ve.community.payloads.request.UsersRequest;
 import com.ve.community.payloads.response.UserInfoResponse;
 import com.ve.community.payloads.response.UsersResponse;
+
 import com.ve.community.services.UsersService;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
@@ -31,6 +32,8 @@ public class AuthController {
     @Autowired
     private ModelMapper modelMapper;
 
+
+
     private static final Logger LOGGER = LoggerFactory.getLogger(AuthController.class);
     @PostMapping(value = "/signin", produces = "application/json", consumes = "application/json")
     public ResponseEntity<UserInfoResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -41,17 +44,22 @@ public class AuthController {
 
     }
     @GetMapping("/getAllUsers")
-    public ResponseWrapper<List<UsersResponse>> getAllUsers(){
-        List<UsersResponse> usersList=usersService.getAllUsers();
+    public ResponseWrapper<UsersResponse> getAllUsers(){
+        UsersResponse usersList=  usersService.getAllUsers();
+        System.out.println("userResponse :"+ usersList);
         return new ResponseWrapper(HttpStatus.OK,"",usersList);
     }
 
 
-
     @PostMapping("/saveUser")
     public ResponseEntity<String> createUser(@Valid @RequestBody UsersRequest usersRequest) {
+
+        System.out.println(usersRequest);
         usersService.createUser(usersRequest);
         return ResponseEntity.ok(CommonConstant.USERS_SUCCESSFULLY);
     }
+
+
+
 
 }

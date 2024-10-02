@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -39,17 +40,39 @@ public class Users {
     private String phoneNo2;
     @Column(name="w_p_no")
     private String whatsappNo;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "base_id", referencedColumnName = "id")
-    private List<PermanentAddress> permanentAddressList;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "base_id", referencedColumnName = "id")
-    private List<PresentAddress> presentAddressListList;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "base_id", referencedColumnName = "id")
-    private List<ProfessionalDetails> professionalDetailsListrDetailList;
+
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private PermanentAddress permanentAddressList;
 
 
+    @OneToOne(fetch = FetchType.EAGER,mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private PresentAddress presentAddressList;
 
+    @OneToOne(fetch = FetchType.EAGER,mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private ProfessionalDetails professionalDetailsList;
+
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "id=" + Id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", sonOfOrDaughterOf='" + sonOfOrDaughterOf + '\'' +
+                ", subcast='" + subcast + '\'' +
+                ", gotra='" + gotra + '\'' +
+                ", bloodGp='" + bloodGp + '\'' +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
+                ", age='" + age + '\'' +
+                ", gender='" + gender + '\'' +
+                ", assemblyConstituency='" + assemblyConstituency + '\'' +
+                ", phoneNo1='" + phoneNo1 + '\'' +
+                ", phoneNo2='" + phoneNo2 + '\'' +
+                ", whatsappNo='" + whatsappNo + '\'' +
+                ", permanentAddressList=" + permanentAddressList +
+                ", presentAddressListList=" + presentAddressList +
+                ", professionalDetailsListrDetailList=" + professionalDetailsList +
+                '}';
+    }
 }
 

@@ -10,7 +10,7 @@ import lombok.Data;
 public class ProfessionalDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer Id;
+    private Integer id;
     @Column(name="job_business")
     private String jobBusiness;
     @Column(name="designation")
@@ -29,7 +29,8 @@ public class ProfessionalDetails {
     private String district;
     @Column(name="state")
     private String state;
-    @JoinColumn(name = "base_id", referencedColumnName = "id")
-    @ManyToOne
-    private Users baseId;
+
+    @OneToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "base_id", nullable = false)
+    private Users user;
 }

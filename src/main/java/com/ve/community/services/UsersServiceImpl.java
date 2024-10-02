@@ -38,19 +38,21 @@ public class UsersServiceImpl implements UsersService {
     }*/
     // }
     @Override
-    public List<UsersResponse> getAllUsers() {
+    public UsersResponse getAllUsers() {
 
         List<Users> list_users = usersRepository.findAll();
 
-        List<UsersResponse> list_res = list_users.stream()
+        UsersResponse list_res = (UsersResponse) list_users.stream()
                 .map(user -> modelMapper.map(user, UsersResponse.class))
                 .collect(Collectors.toList());
+        System.out.println("User :"+ list_users);
         return  list_res;
     }
 
     @Override
     public Users createUser(UsersRequest usersRequest) {
         Users user = modelMapper.map(usersRequest, Users.class);
+        System.out.println("User : "+ user);
         return usersRepository.save(user);
         }
 

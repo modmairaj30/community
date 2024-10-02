@@ -25,7 +25,23 @@ public class PermanentAddress {
     private String state;
     @Column(name="phone no")
     private String phoneNo;
+
     @JoinColumn(name = "base_id", referencedColumnName = "id")
-    @ManyToOne
-    private Users baseId;
+    @OneToOne(fetch = FetchType.EAGER)
+    private Users user;
+
+    @Override
+    public String toString() {
+        return "PermanentAddress{" +
+                "id=" + Id +
+                ", houseNoNamePlotNo='" + houseNoNamePlotNo + '\'' +
+                ", streetLandmark='" + streetLandmark + '\'' +
+                ", village='" + village + '\'' +
+                ", mandalArea='" + mandalArea + '\'' +
+                ", district='" + district + '\'' +
+                ", state='" + state + '\'' +
+                ", phoneNo='" + phoneNo + '\'' +
+                ", user=" + user +
+                '}';
+    }
 }

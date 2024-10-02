@@ -24,7 +24,32 @@ import java.util.List;
     private String email;
     private String newPassword;
     private String confirmNewPassword;
-    private List<PermanentAddressRequest> permanentAddressList;
-    private List<PresentAddressRequest> presentAddressList;
-    private List<ProfessionalDetailsRequest> professionalDetailsList;
+    private PermanentAddressRequest permanentAddressList;
+    private PresentAddressRequest presentAddressList;
+    private ProfessionalDetailsRequest professionalDetailsList;
+
+    @Override
+    public String toString() {
+        return "UsersRequest{" +
+                "Id=" + Id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", sonOfOrDaughterOf='" + sonOfOrDaughterOf + '\'' +
+                ", subcast='" + subcast + '\'' +
+                ", gotra='" + gotra + '\'' +
+                ", bloodGp='" + bloodGp + '\'' +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
+                ", age='" + age + '\'' +
+                ", gender='" + gender + '\'' +
+                ", assemblyConstituency='" + assemblyConstituency + '\'' +
+                ", mobileNo='" + mobileNo + '\'' +
+                ", whatsappNo='" + whatsappNo + '\'' +
+                ", email='" + email + '\'' +
+                ", newPassword='" + newPassword + '\'' +
+                ", confirmNewPassword='" + confirmNewPassword + '\'' +
+                ", permanentAddressList=" + permanentAddressList +
+                ", presentAddressList=" + presentAddressList +
+                ", professionalDetailsList=" + professionalDetailsList +
+                '}';
+    }
 }
