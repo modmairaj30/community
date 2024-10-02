@@ -10,6 +10,9 @@ public final class CommonConstant {
 	public static final String ADDRESS_SUCCESSFULLY = "address successfully created";
 	public static final String PRESENTADDRESS_SUCCESSFULLY = "present address created";
 	public static final String DETAILS_SUCCESSFULLY ="details are added" ;
+    public static final String PROFILE_SUCCESSFULLY = "Bio-data details added successfully ";
+    public static final String BUSINESS_SUCCESSFULLY = "Business details added successfully";
+	public static final String JOB_SUCCESSFULLY = "Job Details added successfully";
 
 	private CommonConstant() {}
 
