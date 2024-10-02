@@ -3,6 +3,7 @@ package com.ve.community.payloads.request;
 import com.ve.community.models.PermanentAddress;
 import com.ve.community.models.PresentAddress;
 import com.ve.community.models.ProfessionalDetails;
+import jakarta.persistence.Column;
 import lombok.Data;
 import java.util.List;
 @Data
@@ -18,10 +19,12 @@ import java.util.List;
     private String age;
     private String gender;
     private String assemblyConstituency;
-    private String phoneNo1;
-    private String phoneNo2;
+    private String mobileNo;
     private String whatsappNo;
-    private List<PermanentAddress> permanentAddressList;
-    private List<PresentAddress> presentAddressListList;
-    private List<ProfessionalDetails> professionalDetailsListrDetailList;
+    private String email;
+    private String newPassword;
+    private String confirmNewPassword;
+    private List<PermanentAddressRequest> permanentAddressList;
+    private List<PresentAddressRequest> presentAddressList;
+    private List<ProfessionalDetailsRequest> professionalDetailsList;
 }
