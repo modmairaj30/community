@@ -1,4 +1,4 @@
-package com.frontbackend.springboot.controller;
+package com.ve.community.controllers;
 
 import java.io.IOException;
 import java.nio.file.Files;
