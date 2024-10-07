@@ -6,6 +6,9 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.ve.community.models.FileData;
+import com.ve.community.models.UploadResponseMessage;
+import com.ve.community.services.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -22,9 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
-import com.ve.community.model.FileData;
-import com.ve.community.model.UploadResponseMessage;
-import com.ve.community.service.FileService;
+
 
 @RestController
 @RequestMapping("files")
