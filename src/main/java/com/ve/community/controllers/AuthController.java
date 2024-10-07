@@ -36,12 +36,10 @@ public class AuthController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AuthController.class);
     @PostMapping(value = "/signin", produces = "application/json", consumes = "application/json")
-    public ResponseEntity<UserInfoResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+    public ResponseWrapper<UsersResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         LOGGER.info("AuthController Started");
-        long id=1;
-        return ResponseEntity.ok().body(new UserInfoResponse(id,
-                loginRequest.getUsername(), "abc@tect.com"));
-
+        UsersResponse usersResponse = usersService.getUserByEmailId(loginRequest.getEmail(), loginRequest.getPassword());
+        return new ResponseWrapper(HttpStatus.OK,"Users logged Successfully",usersResponse);
     }
     @GetMapping("/getAllUsers")
     public ResponseWrapper<UsersResponse> getAllUsers(){

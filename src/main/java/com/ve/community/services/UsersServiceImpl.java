@@ -50,6 +50,13 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
+    public UsersResponse getUserByEmailId(String email, String password) {
+        Users user = usersRepository.findByEmail(email)
+                ;
+        UsersResponse usersResponse = modelMapper.map(user, UsersResponse.class);
+        return usersResponse;
+    }
+    @Override
     public Users createUser(UsersRequest usersRequest) {
         Users user = modelMapper.map(usersRequest, Users.class);
         System.out.println("User : "+ user);

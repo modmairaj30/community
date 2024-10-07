@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface UsersService {
     UsersResponse getAllUsers();
-    //User getUserById(Integer id);
+    UsersResponse getUserByEmailId(String email, String password);
     Users createUser(UsersRequest usersRequest);
     //void deleteUser(Integer id);
 }
