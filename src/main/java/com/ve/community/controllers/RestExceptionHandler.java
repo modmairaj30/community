@@ -1,4 +1,4 @@
-package com.frontbackend.springboot.exceptions;
+package com.ve.community.controllers;
 
 import com.frontbackend.springboot.model.UploadResponseMessage;
 import org.springframework.http.HttpStatus;
