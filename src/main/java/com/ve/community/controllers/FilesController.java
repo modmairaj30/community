@@ -22,9 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
-import com.frontbackend.springboot.model.FileData;
-import com.frontbackend.springboot.model.UploadResponseMessage;
-import com.frontbackend.springboot.service.FileService;
+import com.ve.community.model.FileData;
+import com.ve.community.model.UploadResponseMessage;
+import com.ve.community.service.FileService;
 
 @RestController
 @RequestMapping("files")
