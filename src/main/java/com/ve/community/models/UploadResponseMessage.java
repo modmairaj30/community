@@ -1,4 +1,4 @@
-package com.frontbackend.springboot.model;
+package com.ve.community.models;
 
 public class UploadResponseMessage {
 
