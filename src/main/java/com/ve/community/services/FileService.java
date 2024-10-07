@@ -1,4 +1,4 @@
-package com.frontbackend.springboot.service;
+package com.ve.community.services;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
