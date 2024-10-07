@@ -11,9 +11,8 @@ public class CommunityBusiness {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
     @Column(name="community_id_no")
-    private String communityIdNo;
+    private Integer communityIdNo;
     @Column(name = "company_business_name")
     private String companyBusinessName;
 

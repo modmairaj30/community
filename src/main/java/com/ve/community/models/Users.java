@@ -40,6 +40,13 @@ public class Users {
     private String phoneNo2;
     @Column(name="w_p_no")
     private String whatsappNo;
+    
+    @Column(name="email")
+    private String email;
+    @Column(name="new_password")
+    private String newPassword;
+    @Column(name="confrim_new_password")
+    private String confirmNewPassword;
 
     @OneToOne(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private PermanentAddress permanentAddressList;

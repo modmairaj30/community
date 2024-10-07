@@ -5,8 +5,7 @@ import lombok.Data;
 
 @Data
 public class CommunityBusinessRequest {
-    private Integer id;
-    private String communityIdNo;
+    private Integer communityIdNo;
     private String companyBusinessName;
     private String typeOfBusiness;
     private String houseNoNamePlotNo;

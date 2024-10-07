@@ -17,6 +17,9 @@ public class UsersResponse {
     private String dateOfBirth;
     private String age;
     private String gender;
+    private String email;
+    private String newPassword;
+    private String confirmNewPassword;
     private String assemblyConstituency;
     private String phoneNo1;
     private String phoneNo2;
