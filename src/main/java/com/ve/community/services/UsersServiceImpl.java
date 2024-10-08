@@ -57,10 +57,18 @@ public class UsersServiceImpl implements UsersService {
         return usersResponse;
     }
     @Override
-    public Users createUser(UsersRequest usersRequest) {
+    public String createUser(UsersRequest usersRequest) {
         Users user = modelMapper.map(usersRequest, Users.class);
-        System.out.println("User : "+ user);
-        return usersRepository.save(user);
+        Users user1= usersRepository.save(user);
+        String res="";
+        if(user1!=null) {
+        	res="Data Save Successfully";
+        }
+        else {
+        	res="Fail to Save Data";
+        }
+        System.out.println("User1 : "+ user1);
+        return res;
         }
 
     }

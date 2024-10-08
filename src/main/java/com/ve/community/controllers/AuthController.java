@@ -1,24 +1,25 @@
 package com.ve.community.controllers;
 
 
-import com.ve.community.constants.CommonConstant;
-import com.ve.community.constants.ResponseWrapper;
-import com.ve.community.payloads.request.LoginRequest;
-import com.ve.community.payloads.request.UsersRequest;
-import com.ve.community.payloads.response.UserInfoResponse;
-import com.ve.community.payloads.response.UsersResponse;
-
-import com.ve.community.services.UsersService;
-import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.ve.community.constants.ResponseWrapper;
+import com.ve.community.payloads.request.LoginRequest;
+import com.ve.community.payloads.request.UsersRequest;
+import com.ve.community.payloads.response.UsersResponse;
+import com.ve.community.services.UsersService;
+
+import jakarta.validation.Valid;
 
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -39,22 +40,19 @@ public class AuthController {
     public ResponseWrapper<UsersResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         LOGGER.info("AuthController Started");
         UsersResponse usersResponse = usersService.getUserByEmailId(loginRequest.getEmail(), loginRequest.getPassword());
-        return new ResponseWrapper(HttpStatus.OK,"Users logged Successfully",usersResponse);
+        return new ResponseWrapper<UsersResponse>(HttpStatus.OK,"Users logged Successfully",usersResponse);
     }
     @GetMapping("/getAllUsers")
     public ResponseWrapper<UsersResponse> getAllUsers(){
         UsersResponse usersList=  usersService.getAllUsers();
         System.out.println("userResponse :"+ usersList);
-        return new ResponseWrapper(HttpStatus.OK,"",usersList);
+        return new ResponseWrapper<UsersResponse>(HttpStatus.OK,"",usersList);
     }
 
 
     @PostMapping("/saveUser")
-    public ResponseEntity<String> createUser(@Valid @RequestBody UsersRequest usersRequest) {
-
-        System.out.println(usersRequest);
-        usersService.createUser(usersRequest);
-        return ResponseEntity.ok(CommonConstant.USERS_SUCCESSFULLY);
+    public ResponseWrapper<String> createUser(@Valid @RequestBody UsersRequest usersRequest) {
+    	return new ResponseWrapper<String>(HttpStatus.OK, usersService.createUser(usersRequest),"");
     }
 
 
