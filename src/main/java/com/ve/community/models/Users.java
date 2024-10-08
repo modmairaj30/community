@@ -47,6 +47,9 @@ public class Users {
     private String newPassword;
     @Column(name="confrim_new_password")
     private String confirmNewPassword;
+    
+    @Column(name="image_url")
+    private String imageUrl;
 
     @OneToOne(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private PermanentAddress permanentAddressList;

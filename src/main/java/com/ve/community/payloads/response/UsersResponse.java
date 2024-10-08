@@ -27,6 +27,7 @@ public class UsersResponse {
     private PermanentAddressResponse permanentAddressList;
     private PresentAddressResponse presentAddressList;
     private ProfessionalDetailsResponse professionalDetailsList;
+    private String imageUrl;
 
     @Override
     public String toString() {

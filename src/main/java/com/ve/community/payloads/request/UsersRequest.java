@@ -27,6 +27,7 @@ import java.util.List;
     private PermanentAddressRequest permanentAddressList;
     private PresentAddressRequest presentAddressList;
     private ProfessionalDetailsRequest professionalDetailsList;
+    private String imageUrl;
 
     @Override
     public String toString() {

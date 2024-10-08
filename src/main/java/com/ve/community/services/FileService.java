@@ -9,8 +9,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.annotation.PostConstruct;
 
-
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -18,13 +20,24 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.PostConstruct;
+import com.ve.community.models.Users;
+import com.ve.community.repository.UsersRepository;
 
 @Service
 public class FileService {
 
     @Value("${upload.path}")
     private String uploadPath;
+    
+    @Value("${http.path}")
+    private String httpPath;
+    
+    @Autowired
+    private UsersRepository usersRepository;
+    @Autowired
+    private ModelMapper modelMapper;
+    
+   
 
     @PostConstruct
     public void init() {
@@ -37,6 +50,9 @@ public class FileService {
 
     public void save(MultipartFile file) {
         try {
+        	String filePath = null;
+        
+
             Path root = Paths.get(uploadPath);
             if (!Files.exists(root)) {
                 init();
@@ -46,6 +62,25 @@ public class FileService {
             throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
         }
     }
+    
+    public void uploadImg(MultipartFile file,String email) {
+        try {
+        	//String filePath = null;
+        
+
+            Path root = Paths.get(uploadPath);
+            if (!Files.exists(root)) {
+                init();
+            }
+            Files.copy(file.getInputStream(), root.resolve(file.getOriginalFilename()));
+            Users user = usersRepository.findByEmail(email);
+            user.setImageUrl(httpPath.concat(file.getOriginalFilename()));
+            usersRepository.save(user);
+        } catch (Exception e) {
+            throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
+        }
+    }
+    
 
     public Resource load(String filename) {
         try {
