@@ -5,9 +5,8 @@ import lombok.Data;
 
 @Data
 public class LifePartnerProfileRequest {
-    private Integer id;
+    private Integer communityIdNo;
     private String applicantName;
-    private String communityIdNo;
     private String  myselfMySonMyDaughterMySisterMyBrother;
     private String nameOfThePerson;
     private String sonOfDaughterOf;

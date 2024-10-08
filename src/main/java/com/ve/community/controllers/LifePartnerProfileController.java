@@ -20,13 +20,13 @@ import java.util.List;
 public class LifePartnerProfileController {
     @Autowired
     LifePartnerProfileService lifePartnerProfileService;
-    @GetMapping("/getAllProfiles")
+    @GetMapping("/getAllLifePartnerProfiles")
     public ResponseWrapper<List<LifePartnerProfileResponse>> getAllProfiles(){
         List<LifePartnerProfileResponse> profilesList= lifePartnerProfileService.getAllProfiles();
         return new ResponseWrapper(HttpStatus.OK,"",profilesList);
     }
 
-    @PostMapping("/saveProfile")
+    @PostMapping("/saveLifePartnerProfile")
     public ResponseEntity<String> createProfile(@Valid @RequestBody LifePartnerProfileRequest lifePartnerProfileRequest) {
         lifePartnerProfileService.createProfile(lifePartnerProfileRequest);
         return ResponseEntity.ok(CommonConstant.PROFILE_SUCCESSFULLY);

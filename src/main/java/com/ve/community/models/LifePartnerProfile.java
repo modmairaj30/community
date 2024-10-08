@@ -4,16 +4,14 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name="bio_data")
+@Table(name="life_partner_profile")
 @Data
 public class LifePartnerProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer communityIdNo;
     @Column(name = "applicant_name")
     private String applicantName;
-    @Column(name="community_id_no")
-    private String communityIdNo;
     @Column(name="myself_my_son_my_daughter_my_sister_my_brother")
     private String  myselfMySonMyDaughterMySisterMyBrother;
     @Column(name="name_of_the_person")
