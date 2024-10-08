@@ -5,7 +5,8 @@ import lombok.Data;
 
 @Data
 public class CommunityJobResponse {
-    private Integer companyJobName;
+    private Integer communityIdNo;
+    private String  companyJobName;
     private String locationArea;
     private String typeOfJob;
     private String position;
@@ -15,5 +16,4 @@ public class CommunityJobResponse {
     private String contactNo;
     private String postBy;
     private String providerDesignation;
-    private String communityIdNo;
 }

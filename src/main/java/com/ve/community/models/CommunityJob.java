@@ -11,7 +11,6 @@ public class CommunityJob {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="community_id_no")
     private Integer communityIdNo;
     @Column(name = "company_job_name")
     private String companyJobName;
