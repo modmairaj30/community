@@ -37,4 +37,12 @@ public class LifePartnerProfileServiceImpl implements LifePartnerProfileService{
         LifePartnerProfile profile = modelMapper.map(lifePartnerProfileRequest, LifePartnerProfile.class);
         return lifePartnerProfileRepository.save(profile);
     }
+    
+    @Override
+	public LifePartnerProfile getUserById(Integer communityIdNo) {
+		return lifePartnerProfileRepository.findById(communityIdNo)
+                .orElseThrow(() -> new RuntimeException("Profile not found for ID: " + communityIdNo));
+	
+	
+	}
 }

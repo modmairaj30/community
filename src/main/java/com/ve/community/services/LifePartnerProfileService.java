@@ -13,4 +13,5 @@ public interface LifePartnerProfileService {
     List<LifePartnerProfileResponse> getAllProfiles();
     //User getUserById(Integer id);
     LifePartnerProfile createProfile(LifePartnerProfileRequest lifePartnerProfileRequest);
+	LifePartnerProfile getUserById(Integer communityIdNo);
 }

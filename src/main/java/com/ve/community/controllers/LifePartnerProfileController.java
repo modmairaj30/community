@@ -31,4 +31,10 @@ public class LifePartnerProfileController {
         lifePartnerProfileService.createProfile(lifePartnerProfileRequest);
         return ResponseEntity.ok(CommonConstant.PROFILE_SUCCESSFULLY);
     }
+    
+    @GetMapping("/LifePartnerProfile/{communityIdNo}")
+    public ResponseEntity<LifePartnerProfile> getProfileById(@PathVariable Integer communityIdNo) {
+        LifePartnerProfile profile = lifePartnerProfileService.getUserById(communityIdNo);
+        return new ResponseEntity<>(profile, HttpStatus.OK);
+    }
 }
