@@ -39,5 +39,10 @@ public class CommunityBusinessServiceImpl implements CommunityBusinessService{
         return lis_com;
     }
 
+    @Override
+    public CommunityBusiness getBusinessById(Integer communityIdNo) {
+        return communityBusinessRepository.findById(communityIdNo)
+                .orElseThrow(() -> new RuntimeException("Business not found"));
+    }
 }
 

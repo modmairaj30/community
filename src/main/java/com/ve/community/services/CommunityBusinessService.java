@@ -1,8 +1,5 @@
 package com.ve.community.services;
 
-
-
-
 import com.ve.community.models.CommunityBusiness;
 import com.ve.community.payloads.request.CommunityBusinessRequest;
 import com.ve.community.payloads.response.CommunityBusinessResponse;
@@ -17,5 +14,5 @@ public interface CommunityBusinessService  {
 
     List<CommunityBusinessResponse> getCommunity();
 
-
+	CommunityBusiness getBusinessById(Integer communityIdNo);
 }

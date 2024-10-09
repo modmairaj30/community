@@ -15,4 +15,6 @@ public interface CommunityJobService {
     CommunityJob createJob(CommunityJobRequest communityBusinessRequest);
 
     List<CommunityJobResponse> getJob();
+    
+    CommunityJob getJobById(Integer communityIdNo);
 }

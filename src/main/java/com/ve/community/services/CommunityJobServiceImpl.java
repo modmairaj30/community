@@ -36,4 +36,9 @@ public class CommunityJobServiceImpl implements CommunityJobService{
         return lis_job;
     }
 
+    @Override
+    public CommunityJob getJobById(Integer communityIdNo) {
+        return communityJobRepository.findById(communityIdNo)
+                .orElseThrow(() -> new RuntimeException("Job not found"));
+    }
 }
