@@ -14,6 +14,7 @@ public final class CommonConstant {
     public static final String BUSINESS_SUCCESSFULLY = "Business details added successfully";
 	public static final String JOB_SUCCESSFULLY = "Job Details added successfully";
 	public static final String REFFERANDEARN_SUCCESSFULLY = "Reffer and Earn added successfully";
+	public static final String ADVERTISEMENT_SUCCESSFULLY = "advertisement added successfully";
 
 	private CommonConstant() {}
 
