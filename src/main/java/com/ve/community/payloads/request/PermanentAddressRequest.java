@@ -10,6 +10,7 @@ import lombok.Data;
     private String district;
     private String state;
     private String phoneNo;
+    private String pin;
     private Integer baseId;
 
     @Override

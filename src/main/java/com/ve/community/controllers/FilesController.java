@@ -93,5 +93,20 @@ public class FilesController {
                              .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
                              .body(file);
     }
+    
+    // images
+    @PostMapping("/uploadImage")
+    public ResponseEntity<UploadResponseMessage> uploadImage(@RequestParam("file") MultipartFile file,String email) {
+        try {
+            fileService.uploadImg(file,email);
+
+            return ResponseEntity.status(HttpStatus.OK)
+                                 .body(new UploadResponseMessage("Uploaded the file successfully: " + file.getOriginalFilename()));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED)
+                                 .body(new UploadResponseMessage("Could not upload the file: " + file.getOriginalFilename() + "!"));
+        }
+    }
+
 }
 

@@ -24,8 +24,10 @@ public class PresentAddress {
     private String district;
     @Column(name="state")
     private String state;
-    @Column(name="phone no")
+    @Column(name="phone_no")
     private String phoneNo;
+    @Column(name="pin")
+    private String pin;
     @JoinColumn(name = "base_id", referencedColumnName = "id")
     @OneToOne(fetch = FetchType.EAGER)
     private Users user;

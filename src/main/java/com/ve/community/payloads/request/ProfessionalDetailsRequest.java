@@ -1,6 +1,5 @@
 package com.ve.community.payloads.request;
 
-import com.ve.community.models.Users;
 import lombok.Data;
 @Data
 public class ProfessionalDetailsRequest {

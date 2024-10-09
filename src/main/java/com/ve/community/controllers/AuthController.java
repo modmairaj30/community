@@ -40,7 +40,10 @@ public class AuthController {
     public ResponseWrapper<UsersResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         LOGGER.info("AuthController Started");
         UsersResponse usersResponse = usersService.getUserByEmailId(loginRequest.getEmail(), loginRequest.getPassword());
-        return new ResponseWrapper<UsersResponse>(HttpStatus.OK,"Users logged Successfully",usersResponse);
+        if(usersResponse==null) {
+        return new ResponseWrapper<UsersResponse>(HttpStatus.OK,"User not Exists",usersResponse);
+        }
+        return new ResponseWrapper<UsersResponse>(HttpStatus.OK,"User logged Successfully",usersResponse);
     }
     @GetMapping("/getAllUsers")
     public ResponseWrapper<UsersResponse> getAllUsers(){

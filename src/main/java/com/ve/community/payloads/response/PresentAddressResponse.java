@@ -1,9 +1,5 @@
 package com.ve.community.payloads.response;
 
-import com.ve.community.models.Users;
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
 
@@ -18,6 +14,7 @@ public class PresentAddressResponse {
     private String district;
     private String state;
     private String phoneNo;
+    private String pin;
     private Integer baseId;
 
     @Override

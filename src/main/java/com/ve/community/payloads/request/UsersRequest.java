@@ -1,11 +1,6 @@
 package com.ve.community.payloads.request;
 
-import com.ve.community.models.PermanentAddress;
-import com.ve.community.models.PresentAddress;
-import com.ve.community.models.ProfessionalDetails;
-import jakarta.persistence.Column;
 import lombok.Data;
-import java.util.List;
 @Data
     public class UsersRequest {
     private Integer Id;
@@ -21,6 +16,7 @@ import java.util.List;
     private String assemblyConstituency;
     private String mobileNo;
     private String whatsappNo;
+    private String wardNo;
     private String email;
     private String newPassword;
     private String confirmNewPassword;

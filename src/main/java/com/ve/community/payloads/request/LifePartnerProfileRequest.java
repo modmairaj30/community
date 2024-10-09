@@ -1,6 +1,5 @@
 package com.ve.community.payloads.request;
 
-import jakarta.persistence.Column;
 import lombok.Data;
 
 @Data

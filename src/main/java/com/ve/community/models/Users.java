@@ -1,10 +1,15 @@
 package com.ve.community.models;
 
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import lombok.Data;
-
-import java.util.List;
-import java.util.Set;
 
 @Entity
 @Data
@@ -50,6 +55,9 @@ public class Users {
     
     @Column(name="image_url")
     private String imageUrl;
+    
+    @Column(name="ward_no")
+    private String wardNO;
 
     @OneToOne(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private PermanentAddress permanentAddressList;

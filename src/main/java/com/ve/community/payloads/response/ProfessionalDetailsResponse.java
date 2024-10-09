@@ -1,6 +1,5 @@
 package com.ve.community.payloads.response;
 
-import com.ve.community.models.Users;
 import lombok.Data;
 
 
