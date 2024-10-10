@@ -19,4 +19,6 @@ public class CommunityBusinessResponse {
     private String providerDesignation;
     private String descriptionAboutBusiness;
     private Boolean activate;
+    private String userEmail;
+    private String userId;
 }

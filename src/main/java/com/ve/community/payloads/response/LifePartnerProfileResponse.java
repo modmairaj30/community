@@ -38,4 +38,6 @@ public class LifePartnerProfileResponse {
     private String emailId;
     private String writeYourRequirements;
     private Boolean activate;
+    private String userEmail;
+    private String userId;
 }

@@ -12,5 +12,7 @@ private String imageUrl;
 
 private String link;
 
+private String userEmail;
+private String userId;
 
 }

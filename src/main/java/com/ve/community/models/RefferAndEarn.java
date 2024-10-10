@@ -21,4 +21,9 @@ public class RefferAndEarn {
 	@Column(name="refferal_name")
 	private String referralName;
 	
+	 @Column(name="user_email")
+	 private String userEmail;
+	    
+	 @Column(name="user_id")
+	 private String userId;
 }

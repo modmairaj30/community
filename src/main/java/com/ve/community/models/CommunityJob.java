@@ -44,4 +44,10 @@ public class CommunityJob {
 
     @Column(name="activate")
     private Boolean activate;
+    
+    @Column(name="user_email")
+    private String userEmail;
+    
+    @Column(name="user_id")
+    private String userId;
 }

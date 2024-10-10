@@ -7,4 +7,6 @@ public class RefferAndEarnRequest {
 
 	private Integer id;
 	private String referralName;
+	private String userEmail;
+	private String userId;
 }

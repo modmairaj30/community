@@ -18,4 +18,6 @@ public class CommunityJobRequest {
     private String postBy;
     private String providerDesignation;
     private Boolean activate;
+    private String userEmail;
+    private String userId;
 }

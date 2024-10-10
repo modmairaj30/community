@@ -15,14 +15,21 @@ public class Advertisement {
 	 @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	 
 	 @Column(name="advertisement_Name")
 	 private String advertisementName;
+	 
 	 @Column(name="image_url")
 	 private String imageUrl;
+	 
 	 @Column(name="link")
 	 private String link;
 	 
-	 
+	 @Column(name="user_email")
+	 private String userEmail;
+	    
+	 @Column(name="user_id")
+	 private String userId;
 	
 
 }

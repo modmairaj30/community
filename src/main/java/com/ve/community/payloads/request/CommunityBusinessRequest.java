@@ -20,4 +20,6 @@ public class CommunityBusinessRequest {
     private String providerDesignation;
     private String descriptionAboutBusiness;
     private Boolean activate;
+    private String userEmail;
+    private String userId;
 }
