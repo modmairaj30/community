@@ -42,4 +42,6 @@ public class CommunityJob {
     @Column(name ="provider_designation")
     private String providerDesignation;
 
+    @Column(name="activate")
+    private Boolean activate;
 }

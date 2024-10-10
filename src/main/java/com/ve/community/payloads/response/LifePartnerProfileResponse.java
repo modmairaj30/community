@@ -37,4 +37,5 @@ public class LifePartnerProfileResponse {
     private String whatsAppNo;
     private String emailId;
     private String writeYourRequirements;
+    private Boolean activate;
 }

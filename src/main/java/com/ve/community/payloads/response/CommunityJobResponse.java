@@ -16,4 +16,5 @@ public class CommunityJobResponse {
     private String contactNo;
     private String postBy;
     private String providerDesignation;
+    private Boolean activate;
 }

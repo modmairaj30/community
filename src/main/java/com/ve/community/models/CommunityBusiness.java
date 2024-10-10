@@ -12,6 +12,7 @@ public class CommunityBusiness {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer communityIdNo;
+    
     @Column(name = "company_business_name")
     private String companyBusinessName;
 
@@ -48,9 +49,11 @@ public class CommunityBusiness {
     @Column(name ="provider_designation")
     private String providerDesignation;
 
-   /* @Column(name = "community_id_no")
-    private String communityIdNo;*/
-
     @Column(name = "description_about_business")
     private String descriptionAboutBusiness;
+    
+    @Column(name="activate")
+    private Boolean activate;
+ 
+
 }
