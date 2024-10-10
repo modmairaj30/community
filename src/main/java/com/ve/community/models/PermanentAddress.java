@@ -13,37 +13,27 @@ public class PermanentAddress {
 
     @Column(name = "house_no_name_plot_no")
     private String houseNoNamePlotNo;
+    
     @Column(name="street_landmark")
     private String streetLandmark;
+    
     @Column(name="village")
     private String  village;
+    
     @Column(name="mandal_area")
     private String mandalArea;
+    
     @Column(name="district")
     private String district;
+    
     @Column(name="state")
     private String state;
-    @Column(name="phone_no")
-    private String phoneNo;
+  
     @Column(name="pin")
     private String pin;
-
+    
     @JoinColumn(name = "base_id", referencedColumnName = "id")
-    @OneToOne(fetch = FetchType.EAGER)
-    private Users user;
+    @ManyToOne
+    private Users baseId;
 
-    @Override
-    public String toString() {
-        return "PermanentAddress{" +
-                "id=" + Id +
-                ", houseNoNamePlotNo='" + houseNoNamePlotNo + '\'' +
-                ", streetLandmark='" + streetLandmark + '\'' +
-                ", village='" + village + '\'' +
-                ", mandalArea='" + mandalArea + '\'' +
-                ", district='" + district + '\'' +
-                ", state='" + state + '\'' +
-                ", phoneNo='" + phoneNo + '\'' +
-                ", user=" + user +
-                '}';
-    }
 }

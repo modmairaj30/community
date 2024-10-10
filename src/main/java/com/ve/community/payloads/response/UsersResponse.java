@@ -1,5 +1,7 @@
 package com.ve.community.payloads.response;
 
+import java.util.List;
+
 import lombok.Data;
 @Data
 public class UsersResponse {
@@ -21,31 +23,11 @@ public class UsersResponse {
     private String phoneNo2;
     private String whatsappNo;
     private String wardNo;
-    private PermanentAddressResponse permanentAddressList;
-    private PresentAddressResponse presentAddressList;
-    private ProfessionalDetailsResponse professionalDetailsList;
+    private List<PermanentAddressResponse> permanentAddressList;
+    private List<PresentAddressResponse> presentAddressListList;
+    private List<ProfessionalDetailsResponse> professionalDetailsListrDetailList;
     private String imageUrl;
+    private Boolean activate;
 
-    @Override
-    public String toString() {
-        return "UsersResponse{" +
-                "Id=" + Id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", sonOfOrDaughterOf='" + sonOfOrDaughterOf + '\'' +
-                ", subcast='" + subcast + '\'' +
-                ", gotra='" + gotra + '\'' +
-                ", bloodGp='" + bloodGp + '\'' +
-                ", dateOfBirth='" + dateOfBirth + '\'' +
-                ", age='" + age + '\'' +
-                ", gender='" + gender + '\'' +
-                ", assemblyConstituency='" + assemblyConstituency + '\'' +
-                ", phoneNo1='" + phoneNo1 + '\'' +
-                ", phoneNo2='" + phoneNo2 + '\'' +
-                ", whatsappNo='" + whatsappNo + '\'' +
-                ", permanentAddressList=" + permanentAddressList +
-                ", presentAddressList=" + presentAddressList +
-                ", professionalDetailsList=" + professionalDetailsList +
-                '}';
-    }
+    
 }

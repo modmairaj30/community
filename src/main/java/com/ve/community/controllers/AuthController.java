@@ -1,6 +1,8 @@
 package com.ve.community.controllers;
 
 
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,11 +47,17 @@ public class AuthController {
         }
         return new ResponseWrapper<UsersResponse>(HttpStatus.OK,"User logged Successfully",usersResponse);
     }
+//    @GetMapping("/getAllUsers")
+//    public ResponseWrapper<UsersResponse> getAllUsers(){
+//        UsersResponse usersList=  usersService.getAllUsers();
+//        System.out.println("userResponse :"+ usersList);
+//        return new ResponseWrapper<UsersResponse>(HttpStatus.OK,"",usersList);
+//    }
+
     @GetMapping("/getAllUsers")
-    public ResponseWrapper<UsersResponse> getAllUsers(){
-        UsersResponse usersList=  usersService.getAllUsers();
-        System.out.println("userResponse :"+ usersList);
-        return new ResponseWrapper<UsersResponse>(HttpStatus.OK,"",usersList);
+    public ResponseWrapper<List<UsersResponse>> getAllUsers(){
+        List<UsersResponse> usersList=usersService.getAllUsers();
+        return new ResponseWrapper(HttpStatus.OK,"",usersList);
     }
 
 
