@@ -16,6 +16,7 @@ import com.ve.community.constants.CommonConstant;
 import com.ve.community.constants.ResponseWrapper;
 import com.ve.community.models.Admin;
 import com.ve.community.payloads.request.AdminRequest;
+import com.ve.community.payloads.request.ListOfActivateRequest;
 import com.ve.community.payloads.response.AdminResponse;
 import com.ve.community.services.AdminService;
 
@@ -42,6 +43,18 @@ public class AdminController {
     public ResponseEntity<Admin> getById(@PathVariable Integer id) {
        Admin adv = adminService.getById(id);
         return new ResponseEntity<>(adv, HttpStatus.OK);
+    }
+    
+    @GetMapping("/getAllStatus")
+    public ResponseWrapper<ListOfActivateRequest> getAllStatus(){
+        ListOfActivateRequest listOfActivateRequest =  adminService.getAllStatus();
+        return new ResponseWrapper<ListOfActivateRequest>(HttpStatus.OK,"",listOfActivateRequest);
+    }
+    
+    @PostMapping("/saveAllStatus")
+    public ResponseWrapper<ListOfActivateRequest> saveAllStatus(@RequestBody ListOfActivateRequest listOfActivateRequest){
+        String save =  adminService.saveAllStatus(listOfActivateRequest);
+        return new ResponseWrapper<ListOfActivateRequest>(HttpStatus.OK,"Data Saved Successfully",null);
     }
 
 }

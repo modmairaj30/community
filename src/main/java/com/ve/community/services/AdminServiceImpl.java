@@ -64,10 +64,10 @@ public class AdminServiceImpl implements AdminService {
 	public ListOfActivateRequest getAllStatus() {
 
 		List<CommunityBusinessResponse> communityBusinessResponse = communityBusinessService.getCommunity();
-		List<LifePartnerProfileResponse> lifePartnerProfileResponse= lifePartnerProfileService.getAllProfiles();
-		List<AdvertisementResponse> advertisementResponse=advertisementService.getAdvertisement();
-		List<CommunityJobResponse> communityJobResponse=communityJobService.getJob();
-		ListOfActivateRequest listOfAllStatus= new ListOfActivateRequest();
+		List<LifePartnerProfileResponse> lifePartnerProfileResponse = lifePartnerProfileService.getAllProfiles();
+		List<AdvertisementResponse> advertisementResponse = advertisementService.getAdvertisement();
+		List<CommunityJobResponse> communityJobResponse = communityJobService.getJob();
+		ListOfActivateRequest listOfAllStatus = new ListOfActivateRequest();
 		listOfAllStatus.setAdvertisementResponse(advertisementResponse);
 		listOfAllStatus.setCommunityBusinessResponse(communityBusinessResponse);
 		listOfAllStatus.setCommunityJobResponse(communityJobResponse);
@@ -78,10 +78,28 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public String saveAllStatus(ListOfActivateRequest listOfActivateRequest) {
 
-		List<CommunityBusinessResponse> profilesList = communityBusinessService.getCommunity();
-		List<CommunityJobResponse> CommunityJobResponse = communityJobService.getJob();
+		if (listOfActivateRequest.getCommunityBusinessResponse()!=null) {
+		if (listOfActivateRequest.getCommunityBusinessResponse().size() > 0) {
+			String msg = communityBusinessService.saveAll(listOfActivateRequest.getCommunityBusinessResponse());
+		}
+		}
+		if (listOfActivateRequest.getCommunityJobResponse()!=null) {
+		if (listOfActivateRequest.getCommunityJobResponse().size() > 0) {
+			String msg1 = communityJobService.saveAll(listOfActivateRequest.getCommunityJobResponse());
+		}
+		}
+		if (listOfActivateRequest.getLifePartnerProfileResponse()!=null) {
+		if (listOfActivateRequest.getLifePartnerProfileResponse().size() > 0) {
+			String msg2 = lifePartnerProfileService.saveAll(listOfActivateRequest.getLifePartnerProfileResponse());
+		}
+		}
 
-		return null;
+		if (listOfActivateRequest.getAdvertisementResponse()!=null) {
+			if (listOfActivateRequest.getAdvertisementResponse().size() > 0) {
+				String msg2 = advertisementService.saveAll(listOfActivateRequest.getAdvertisementResponse());
+			}
+			}
+		return "Saved";
 	}
 
 }
