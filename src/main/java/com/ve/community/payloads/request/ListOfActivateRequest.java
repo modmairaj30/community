@@ -2,17 +2,19 @@ package com.ve.community.payloads.request;
 
 import java.util.List;
 
-import com.ve.community.models.CommunityBusiness;
-import com.ve.community.models.CommunityJob;
-import com.ve.community.models.LifePartnerProfile;
-import com.ve.community.models.Users;
+import com.ve.community.payloads.response.AdvertisementResponse;
+import com.ve.community.payloads.response.CommunityBusinessResponse;
+import com.ve.community.payloads.response.CommunityJobResponse;
+import com.ve.community.payloads.response.LifePartnerProfileResponse;
 
+import lombok.Data;
+
+@Data
 public class ListOfActivateRequest {
-	//List<Users> usersList;
-	List<CommunityJob> communityJobList;
-	List<CommunityBusiness> communityBusinessList;
-	List<LifePartnerProfile> lifePartnerProfileList;
-	
-	
+	// List<Users> usersList;
+	List<CommunityJobResponse> communityJobResponse;
+	List<CommunityBusinessResponse> communityBusinessResponse;
+	List<AdvertisementResponse> advertisementResponse;
+	List<LifePartnerProfileResponse> lifePartnerProfileResponse;
 
 }

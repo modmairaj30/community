@@ -16,13 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ve.community.constants.CommonConstant;
 import com.ve.community.constants.ResponseWrapper;
 import com.ve.community.models.Advertisement;
-import com.ve.community.models.LifePartnerProfile;
 import com.ve.community.payloads.request.AdvertisementRequest;
-import com.ve.community.payloads.request.CommunityBusinessRequest;
 import com.ve.community.payloads.response.AdvertisementResponse;
-import com.ve.community.payloads.response.CommunityBusinessResponse;
 import com.ve.community.services.AdvertisementService;
-import com.ve.community.services.CommunityBusinessService;
+
 
 import jakarta.validation.Valid;
 
@@ -31,6 +28,8 @@ import jakarta.validation.Valid;
 public class AdvertisementController {
 	 @Autowired
      AdvertisementService advertisementService;
+	 
+	
      @GetMapping("/getAllAdvertisements")
      public ResponseWrapper<List<AdvertisementResponse>> getAllAdvertisements(){
          List<AdvertisementResponse> profilesList=advertisementService.getAdvertisement();
