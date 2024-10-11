@@ -51,7 +51,10 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 	public String saveAll(List<AdvertisementResponse> advertisementResponse) {
 		List<Advertisement> list = advertisementResponse.stream().map(obj -> modelMapper.map(obj, Advertisement.class))
 				.collect(Collectors.toList());
-		list.stream().map(obj -> advertisementRepository.save(obj));
+		// list.stream().map(obj -> advertisementRepository.saveAndFlush(obj));
+		for (int i = 0; i < list.size(); i++) {
+			advertisementRepository.saveAndFlush(list.get(i));
+		}
 
 		return "Successfully Saved";
 	}

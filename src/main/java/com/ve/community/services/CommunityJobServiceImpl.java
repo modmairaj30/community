@@ -46,7 +46,10 @@ public class CommunityJobServiceImpl implements CommunityJobService {
 	public String saveAll(List<CommunityJobResponse> communityJobResponse) {
 		List<CommunityJob> list = communityJobResponse.stream().map(obj -> modelMapper.map(obj, CommunityJob.class))
 				.collect(Collectors.toList());
-		list.stream().map(obj -> communityJobRepository.save(obj));
+		//list.stream().map(obj -> communityJobRepository.saveAndFlush(obj));
+		for (int i = 0; i < list.size(); i++) {
+			communityJobRepository.saveAndFlush(list.get(i));
+		}
 
 		return "Successfully Saved";
 	}

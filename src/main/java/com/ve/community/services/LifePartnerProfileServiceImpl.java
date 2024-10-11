@@ -1,6 +1,5 @@
 package com.ve.community.services;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,7 +7,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ve.community.models.Advertisement;
 import com.ve.community.models.LifePartnerProfile;
 import com.ve.community.payloads.request.LifePartnerProfileRequest;
 import com.ve.community.payloads.response.LifePartnerProfileResponse;
@@ -48,9 +46,12 @@ public class LifePartnerProfileServiceImpl implements LifePartnerProfileService 
 
 	@Override
 	public String saveAll(List<LifePartnerProfileResponse> lifePartnerProfileResponse) {
-		List<LifePartnerProfile> list = lifePartnerProfileResponse.stream().map(obj -> modelMapper.map(obj, LifePartnerProfile.class))
-				.collect(Collectors.toList());
-		list.stream().map(obj -> lifePartnerProfileRepository.save(obj));
+		List<LifePartnerProfile> list = lifePartnerProfileResponse.stream()
+				.map(obj -> modelMapper.map(obj, LifePartnerProfile.class)).collect(Collectors.toList());
+		// list.stream().map(obj -> lifePartnerProfileRepository.saveAndFlush(obj));
+		for (int i = 0; i < list.size(); i++) {
+			lifePartnerProfileRepository.saveAndFlush(list.get(i));
+		}
 
 		return "Successfully Saved";
 	}

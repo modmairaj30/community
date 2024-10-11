@@ -1,6 +1,5 @@
 package com.ve.community.services;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,10 +46,13 @@ public class CommunityBusinessServiceImpl implements CommunityBusinessService {
 
 	@Override
 	public String saveAll(List<CommunityBusinessResponse> communityBusinessResponse) {
-		List<CommunityBusiness> list  = communityBusinessResponse.stream().map(obj -> modelMapper.map(obj, CommunityBusiness.class))
-				.collect(Collectors.toList());
-		list.stream().map(obj -> communityBusinessRepository.save(obj));
-		 
+		List<CommunityBusiness> list = communityBusinessResponse.stream()
+				.map(obj -> modelMapper.map(obj, CommunityBusiness.class)).collect(Collectors.toList());
+
+		for (int i = 0; i < list.size(); i++) {
+			communityBusinessRepository.saveAndFlush(list.get(i));
+		}
+
 		return "Successfully Saved";
 	}
 
