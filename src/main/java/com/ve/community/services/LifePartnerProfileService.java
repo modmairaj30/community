@@ -15,5 +15,7 @@ public interface LifePartnerProfileService {
 	LifePartnerProfile getUserById(Integer communityIdNo);
 
 	String saveAll(List<LifePartnerProfileResponse> lifePartnerProfileResponse);
+	void deleteProfile(Integer communityIdNo);
+	void updateProfile(Integer communityIdNo, LifePartnerProfileRequest lifePartnerProfileRequest);
 
 }

@@ -55,4 +55,26 @@ public class LifePartnerProfileServiceImpl implements LifePartnerProfileService 
 
 		return "Successfully Saved";
 	}
+
+	@Override
+	public void deleteProfile(Integer communityIdNo) {
+		LifePartnerProfile existingProfile = lifePartnerProfileRepository.findById(communityIdNo)
+		        .orElseThrow(() -> new RuntimeException("LifePartnerProfile not found with id: " + communityIdNo));
+		    
+		    lifePartnerProfileRepository.delete(existingProfile);
+		
+	}
+
+	@Override
+	public void updateProfile(Integer communityIdNo, LifePartnerProfileRequest lifePartnerProfileRequest) {
+		LifePartnerProfile existingProfile = lifePartnerProfileRepository.findById(communityIdNo)
+		        .orElseThrow(() -> new RuntimeException("LifePartnerProfile not found with id: " + communityIdNo));
+		    
+		    // Use ModelMapper to map updated fields from the request to the existing entity
+		    modelMapper.map(lifePartnerProfileRequest, existingProfile);
+
+		    // Save the updated entity
+		    lifePartnerProfileRepository.save(existingProfile);
+		
+	}
 }

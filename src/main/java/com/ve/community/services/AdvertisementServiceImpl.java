@@ -59,4 +59,28 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 		return "Successfully Saved";
 	}
 
+	@Override
+	public void deleteAdvertisement(Integer id) {
+		Advertisement existingAd = advertisementRepository.findById(id)
+		        .orElseThrow(() -> new RuntimeException("Advertisement not found with id: " + id));
+		    
+		    advertisementRepository.delete(existingAd);
+		
+	}
+
+	@Override
+	public void updateProfile(Integer id, AdvertisementRequest advertisementRequest) {
+		 Advertisement existingAd = advertisementRepository.findById(id)
+			        .orElseThrow(() -> new RuntimeException("Advertisement not found with id: " + id));
+			    
+			    // Use ModelMapper to map updated fields from the request to the existing entity
+			    modelMapper.map(advertisementRequest, existingAd);
+
+			    // Save the updated entity
+			    advertisementRepository.save(existingAd);
+			
+		
+	}
+	
+
 }

@@ -14,5 +14,7 @@ public interface AdvertisementService {
 	List<AdvertisementResponse> getAdvertisement();
 	
 	String saveAll(List<AdvertisementResponse> advertisementRequest);
+	void updateProfile(Integer id, AdvertisementRequest advertisementRequest);
+	void deleteAdvertisement(Integer id);
 
 }

@@ -37,4 +37,15 @@ public class LifePartnerProfileController {
         LifePartnerProfile profile = lifePartnerProfileService.getUserById(communityIdNo);
         return new ResponseEntity<>(profile, HttpStatus.OK);
     }
+    @DeleteMapping("/deleteLifePartnerProfile/{communityIdNo}")
+    public ResponseEntity<String> deleteProfile(@PathVariable Integer communityIdNo) {
+        lifePartnerProfileService.deleteProfile(communityIdNo);
+        return ResponseEntity.ok(CommonConstant.PROFILE_DELETED_SUCCESSFULLY);
+    }
+    @PutMapping("/updateLifePartnerProfile/{communityIdNo}")
+    public ResponseEntity<String> updateProfile(@PathVariable Integer communityIdNo, 
+                                                @Valid @RequestBody LifePartnerProfileRequest lifePartnerProfileRequest) {
+        lifePartnerProfileService.updateProfile(communityIdNo, lifePartnerProfileRequest);
+        return ResponseEntity.ok(CommonConstant.PROFILE_UPDATED_SUCCESSFULLY);
+    }
 }

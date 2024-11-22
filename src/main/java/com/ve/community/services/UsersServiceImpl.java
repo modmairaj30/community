@@ -6,6 +6,9 @@ import com.ve.community.models.ProfessionalDetails;
 import com.ve.community.models.Users;
 import com.ve.community.payloads.request.*;
 import com.ve.community.payloads.response.UsersResponse;
+import com.ve.community.repository.PermanentAddressRepository;
+import com.ve.community.repository.PresentAddressRepository;
+import com.ve.community.repository.ProfessionalDetailsRepository;
 import com.ve.community.repository.UsersRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,7 @@ public class UsersServiceImpl implements UsersService {
 
     @Autowired
     private UsersRepository usersRepository;
+    
     @Autowired
     private ModelMapper modelMapper;
 
@@ -68,22 +72,59 @@ public class UsersServiceImpl implements UsersService {
         UsersResponse usersResponse = modelMapper.map(user, UsersResponse.class);
         return usersResponse;
     }
+
+/*
+ * @Override public String createUser(UsersRequest usersRequest) { Users user =
+ * modelMapper.map(usersRequest, Users.class); Users user1=
+ * usersRepository.save(user); String res=""; if(user1!=null) {
+ * res="Data Save Successfully"; } else { res="Fail to Save Data"; }
+ * System.out.println("User1 : "+ user1); return res;
+ * 
+ * 
+ * }}
+ */
+   
     @Override
     public String createUser(UsersRequest usersRequest) {
+        // Directly map the request object to the user entity using ModelMapper
         Users user = modelMapper.map(usersRequest, Users.class);
-        Users user1= usersRepository.save(user);
-        String res="";
-        if(user1!=null) {
-        	res="Data Save Successfully";
-        }
-        else {
-        	res="Fail to Save Data";
-        }
-        System.out.println("User1 : "+ user1);
-        return res;
-        }
 
+        // Save the user
+        Users savedUser = usersRepository.save(user);
+
+        // Return result
+        return savedUser != null ? "Data Saved Successfully" : "Failed to Save Data";
     }
 
+	@Override
+	public void deleteUser(Integer id) {
+		// TODO Auto-generated method stub
+		Users existingUser = usersRepository.findById(id)
+		        .orElseThrow(() -> new RuntimeException("user not found with id: " + id));
+		    
+		    usersRepository.delete(existingUser);
+	}
+
+	@Override
+	public void updateUser(Integer id, UsersRequest usersRequest) {
+		Users existinguser = usersRepository.findById(id)
+		        .orElseThrow(() -> new RuntimeException("user not found with id: " + id));
+		    
+		    // Use ModelMapper to map updated fields from the request to the existing entity
+		    modelMapper.map(usersRequest, existinguser);
+
+		    // Save the updated entity
+		    usersRepository.save(existinguser);
+		
+	}
+
+	@Override
+	public Users getUserById(Integer id) {
+		return usersRepository.findById(id)
+		.orElseThrow(() -> new RuntimeException("user not found for ID: " + id));
+
+
+	
+	}}
 
 
