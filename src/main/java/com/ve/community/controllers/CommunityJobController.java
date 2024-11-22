@@ -2,17 +2,13 @@ package com.ve.community.controllers;
 
 import java.util.List;
 
+import com.ve.community.constants.CommonConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.ve.community.constants.CommonConstant;
+
 import com.ve.community.constants.ResponseWrapper;
 import com.ve.community.models.CommunityJob;
 import com.ve.community.payloads.request.CommunityJobRequest;
@@ -44,4 +40,20 @@ public class CommunityJobController {
         CommunityJob job = communityJobService.getJobById(communityIdNo);
         return ResponseEntity.ok(job);
     }
-}
+
+    @PutMapping("/updateJob/{communityIdNo}")
+    public ResponseEntity<String> updateCommunityJob(@PathVariable Integer communityIdNo,@RequestBody CommunityJobRequest communityJobRequest){
+       CommunityJob job= communityJobService.updateJob(communityIdNo,communityJobRequest);
+        return ResponseEntity.ok(CommonConstant.JOB_UPDATED_SUCCESSFULLY);
+    }
+
+    @DeleteMapping("/deleteJob/{communityIdNo}")
+    public  ResponseEntity<String> deleteCommuntyJob(@PathVariable Integer communityIdNo){
+
+        communityJobService.deleteJob(communityIdNo);
+
+        return  ResponseEntity.ok(CommonConstant.JOB_DELETED_SUCCESSFULLY);
+
+    }
+
+    }

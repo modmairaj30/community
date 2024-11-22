@@ -16,4 +16,7 @@ public interface CommunityJobService {
 
 	String saveAll(List<CommunityJobResponse> communityJobResponse);
 
+	CommunityJob updateJob(Integer communityIdNo,CommunityJobRequest communityJobRequest);
+
+	void deleteJob(Integer communityIdNo);
 }

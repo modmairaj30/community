@@ -16,6 +16,7 @@ public final class CommonConstant {
 	public static final String REFFERANDEARN_SUCCESSFULLY = "Reffer and Earn added successfully";
 	public static final String ADVERTISEMENT_SUCCESSFULLY = "advertisement added successfully";
 	public static final String ADMIN_SUCCESSFULLY = "admin added successfully";
+
 	public static final String PROFILE_DELETED_SUCCESSFULLY = "lifepartner profile successfully deleted";
 	public static final String PROFILE_UPDATED_SUCCESSFULLY = "lifepartner profile update successfully";
 	public static final String ADVERTISEMENT_DELETED_SUCCESSFULLY = "advertisement deleted successfully";
@@ -23,6 +24,11 @@ public final class CommonConstant {
 	public static final String USER_DELETED_SUCCESSFULLY = "user deleted successfully";
 	public static final String USERDETAILS_UPDATED_SUCCESSFULLY = "user details updated successfully";
 	
+
+    public static final String JOB_UPDATED_SUCCESSFULLY = "JOBDETAILS UPDATED SUCCESSFULLY" ;
+	public static final String JOB_DELETED_SUCCESSFULLY = "JOB deleted successfully";
+
+
 	private CommonConstant() {}
 
 

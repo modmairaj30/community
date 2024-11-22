@@ -53,4 +53,33 @@ public class CommunityJobServiceImpl implements CommunityJobService {
 
 		return "Successfully Saved";
 	}
+
+	@Override
+	public CommunityJob updateJob(Integer communityIdNo, CommunityJobRequest communityJobRequest) {
+
+		//CommunityJob CommunityJob ;
+		CommunityJob existingCommunityJob= communityJobRepository.findById(communityIdNo).orElseThrow(() ->new RuntimeException("communityJob not " +
+				"found with id"+communityIdNo));
+
+
+
+		modelMapper.map(communityJobRequest,existingCommunityJob);
+
+        return communityJobRepository.save(existingCommunityJob);
+
+		//	return communityJobRepository.save(existingcommunityJob);
+
+
+	}
+
+	@Override
+	public void deleteJob(Integer communityIdNo) {
+
+		CommunityJob existingJobCommunity = communityJobRepository.findById(communityIdNo).orElseThrow(() -> new RuntimeException("JobCommunity not found communityId"+communityIdNo));
+
+		 communityJobRepository.delete(existingJobCommunity);
+
+	}
+
+
 }
