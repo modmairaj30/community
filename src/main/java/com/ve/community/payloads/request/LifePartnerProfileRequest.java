@@ -1,5 +1,7 @@
 package com.ve.community.payloads.request;
 
+import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
@@ -37,8 +39,20 @@ public class LifePartnerProfileRequest {
     private String whatsAppNo;
     private String emailId;
     private String writeYourRequirements;
-    private Boolean activate;
+    
+    private String familyMemberMother;
+   
+    
+    private String familyMemberFather;
+   
+   
+    private String familyMemberBrothers;
+   
+    private String familyMembersSisters;
+   
     private String userEmail;
     private String userId;
+    private String profileStatus;
+    private boolean deleted = false; // Default is false (not deleted).
 
 }

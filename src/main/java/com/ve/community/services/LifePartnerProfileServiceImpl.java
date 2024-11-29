@@ -1,6 +1,8 @@
 package com.ve.community.services;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -56,14 +58,14 @@ public class LifePartnerProfileServiceImpl implements LifePartnerProfileService 
 		return "Successfully Saved";
 	}
 
-	@Override
-	public void deleteProfile(Integer communityIdNo) {
-		LifePartnerProfile existingProfile = lifePartnerProfileRepository.findById(communityIdNo)
-		        .orElseThrow(() -> new RuntimeException("LifePartnerProfile not found with id: " + communityIdNo));
-		    
-		    lifePartnerProfileRepository.delete(existingProfile);
-		
-	}
+//	@Override
+//	public void deleteProfile(Integer communityIdNo) {
+//		LifePartnerProfile existingProfile = lifePartnerProfileRepository.findById(communityIdNo)
+//		        .orElseThrow(() -> new RuntimeException("LifePartnerProfile not found with id: " + communityIdNo));
+//		    
+//		    lifePartnerProfileRepository.delete(existingProfile);
+//		
+//	}
 
 	@Override
 	public void updateProfile(Integer communityIdNo, LifePartnerProfileRequest lifePartnerProfileRequest) {
@@ -77,4 +79,58 @@ public class LifePartnerProfileServiceImpl implements LifePartnerProfileService 
 		    lifePartnerProfileRepository.save(existingProfile);
 		
 	}
-}
+	
+	public void deleteProfile(Integer communityIdNo) {
+        // Fetch the profile by communityIdNo
+        Optional<LifePartnerProfile> optionalProfile = lifePartnerProfileRepository.findByCommunityIdNoAndDeletedFalse(communityIdNo);
+
+        if (optionalProfile.isPresent()) {
+            LifePartnerProfile profile = optionalProfile.get();
+            profile.setDeleted(true); // Mark as deleted
+            lifePartnerProfileRepository.save(profile); // Save the updated profile
+        } else {
+            throw new RuntimeException("Profile not found or already deleted for Community ID: " + communityIdNo);
+        }}
+
+	
+	@Override
+	public void updateProfileStatus(Integer communityIdNo, String statusType, String statusValue) {
+	    Optional<LifePartnerProfile> optionalProfile = lifePartnerProfileRepository.findById(communityIdNo);
+	    
+	    if (optionalProfile.isEmpty()) {
+	        throw new IllegalArgumentException("Profile with ID " + communityIdNo + " not found.");
+	    }
+
+	    LifePartnerProfile profile = optionalProfile.get();
+	    
+	    if ("profileStatus".equalsIgnoreCase(statusType)) {
+	        // Validate the statusValue
+	        if (!Arrays.asList("approved", "pending", "rejected").contains(statusValue.toLowerCase())) {
+	            throw new IllegalArgumentException("Invalid status value: " + statusValue);
+	        }
+	        profile.setProfileStatus(statusValue);
+	    } else {
+	        throw new IllegalArgumentException("Invalid status type for profile: " + statusType);
+	    }
+
+	    lifePartnerProfileRepository.save(profile);
+	}
+
+	/*public void updateProfileStatus(Integer communityIdNo, String statusType, String statusValue) {
+		Optional<LifePartnerProfile> optionalProfile = lifePartnerProfileRepository.findById(communityIdNo);
+        if (optionalProfile.isEmpty()) {
+            throw new IllegalArgumentException("Profile with ID " + communityIdNo + " not found.");
+        }
+
+        LifePartnerProfile profile = optionalProfile.get();
+        if ("profileStatus".equalsIgnoreCase(statusType)) {
+            profile.setProfileStatus(statusValue);
+        } else {
+            throw new IllegalArgumentException("Invalid status type for profile: " + statusType);
+        }
+
+      lifePartnerProfileRepository.save(profile);
+    }*/
+		
+	}
+
