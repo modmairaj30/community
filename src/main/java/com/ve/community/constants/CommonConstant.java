@@ -27,6 +27,8 @@ public final class CommonConstant {
 
     public static final String JOB_UPDATED_SUCCESSFULLY = "JOBDETAILS UPDATED SUCCESSFULLY" ;
 	public static final String JOB_DELETED_SUCCESSFULLY = "JOB deleted successfully";
+	public static final String BUSINESS_DELETED_SUCCESSFULLY = "Business deleted successfully";
+	public static final String BUSINESS_UPDATED_SUCCESSFULLY = "business update successfully";
 
 
 	private CommonConstant() {}

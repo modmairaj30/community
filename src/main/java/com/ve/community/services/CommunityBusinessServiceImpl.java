@@ -1,6 +1,8 @@
 package com.ve.community.services;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ve.community.models.CommunityBusiness;
+import com.ve.community.models.LifePartnerProfile;
 import com.ve.community.payloads.request.CommunityBusinessRequest;
 import com.ve.community.payloads.response.CommunityBusinessResponse;
 import com.ve.community.repository.CommunityBusinessRepository;
@@ -54,6 +57,57 @@ public class CommunityBusinessServiceImpl implements CommunityBusinessService {
 		}
 
 		return "Successfully Saved";
+	}
+
+	@Override
+	public void deleteBusiness(Integer communityIdNo) {
+		Optional<CommunityBusiness> optionalBusiness = communityBusinessRepository.findByCommunityIdNoAndDeletedFalse(communityIdNo);
+
+        if (optionalBusiness.isPresent()) {
+            CommunityBusiness business = optionalBusiness.get();
+           business.setDeleted(true); // Mark as deleted
+            communityBusinessRepository.save(business); // Save the updated profile
+        } else {
+            throw new RuntimeException("Business not found or already deleted for Community ID: " + communityIdNo);}
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateBuisness(Integer communityIdNo, CommunityBusinessRequest communityBusinessRequest) {
+		// TODO Auto-generated method stub
+		CommunityBusiness existingbusiness = communityBusinessRepository.findById(communityIdNo)
+		        .orElseThrow(() -> new RuntimeException("CommunityBusiness not found with id: " + communityIdNo));
+		    
+		    // Use ModelMapper to map updated fields from the request to the existing entity
+		    modelMapper.map(communityBusinessRequest, existingbusiness);
+
+		    // Save the updated entity
+		   communityBusinessRepository.save(existingbusiness);
+	}
+
+	@Override
+	public void updateBusinessStatus(Integer communityIdNo, String statusType, String statusValue) {
+Optional<CommunityBusiness> optionalBusiness = communityBusinessRepository.findById(communityIdNo);
+	    
+	    if (optionalBusiness.isEmpty()) {
+	        throw new IllegalArgumentException("Business with ID " + communityIdNo + " not found.");
+	    }
+
+	    CommunityBusiness business = optionalBusiness.get();
+	    
+	    if ("businessStatus".equalsIgnoreCase(statusType)) {
+	        // Validate the statusValue
+	        if (!Arrays.asList("approved", "pending", "rejected").contains(statusValue.toLowerCase())) {
+	            throw new IllegalArgumentException("Invalid status value: " + statusValue);
+	        }
+	        business.setBusinessStatus(statusValue);
+	    } else {
+	        throw new IllegalArgumentException("Invalid status type for profile: " + statusType);
+	    }
+
+	    communityBusinessRepository.save(business);
+		
 	}
 
 }

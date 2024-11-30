@@ -26,7 +26,9 @@ import lombok.Data;
     private List<PresentAddressRequest> presentAddressListList;
     private List<ProfessionalDetailsRequest> professionalDetailsListrDetailList;
     private String imageUrl;
-    private Boolean activate;
+    private String userStatus;
+    
+    private boolean deleted = false; // Default is false (not deleted).
 
 
 }

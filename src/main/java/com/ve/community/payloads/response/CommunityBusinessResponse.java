@@ -18,7 +18,11 @@ public class CommunityBusinessResponse {
     private String providerName;
     private String providerDesignation;
     private String descriptionAboutBusiness;
-    private Boolean activate;
+   // private Boolean activate;
     private String userEmail;
     private String userId;
+    private String businessStatus;
+    
+    
+    private boolean deleted = false; // Default is false (not deleted).
 }

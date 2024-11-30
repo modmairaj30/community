@@ -126,15 +126,15 @@ public class LifePartnerProfile {
     private String citizenship;
     @NotBlank
     @Pattern(
-    	    regexp = "^[0-9]{10}$", 
-    	    message = "Phone number must be exactly 10 digits."
+    		regexp = "^[+]91[6-9][0-9]{9}$", 
+    	    message = "Field must follow indian pattern."
     	)
     @Column(name="mobile_no")
     private String mobileNo;
     @NotBlank
     @Pattern(
-    	    regexp = "^[0-9]{10}$", 
-    	    message = "Phone number must be exactly 10 digits."
+    		regexp = "^[+]91[6-9][0-9]{9}$",
+    	    message = "Field must follow indian pattern"
     	)
     @Column(name="w_a_no")
     private String whatsAppNo;

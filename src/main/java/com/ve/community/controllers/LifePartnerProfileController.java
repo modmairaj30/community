@@ -10,6 +10,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.modelmapper.ModelMapper;
 
 import java.util.List;
 
@@ -19,6 +20,8 @@ public class LifePartnerProfileController {
 
     @Autowired
     LifePartnerProfileService lifePartnerProfileService;
+    @Autowired
+    private ModelMapper modelMapper;
 
     @GetMapping("/getAllLifePartnerProfiles")
     public ResponseWrapper<List<LifePartnerProfileResponse>> getAllProfiles() {
@@ -32,12 +35,20 @@ public class LifePartnerProfileController {
         return new ResponseWrapper<>(HttpStatus.OK, CommonConstant.PROFILE_SUCCESSFULLY, true);
     }
 
-    @GetMapping("/LifePartnerProfile/{communityIdNo}")
+   /* @GetMapping("/LifePartnerProfile/{communityIdNo}")
     public ResponseWrapper<LifePartnerProfile> getProfileById(@PathVariable Integer communityIdNo) {
         LifePartnerProfile profile = lifePartnerProfileService.getUserById(communityIdNo);
         return new ResponseWrapper<>(HttpStatus.OK, "Profile fetched successfully", true, profile);
-    }
+    }*/
+    @GetMapping("/LifePartnerProfile/{communityIdNo}")
+    public ResponseWrapper<LifePartnerProfileResponse> getProfileById(@PathVariable Integer communityIdNo) {
+        LifePartnerProfile profile = lifePartnerProfileService.getUserById(communityIdNo);
 
+        // Use ModelMapper to map the entity to the response DTO
+        LifePartnerProfileResponse response = modelMapper.map(profile, LifePartnerProfileResponse.class);
+
+        return new ResponseWrapper<>(HttpStatus.OK, "Profile fetched successfully", true, response);
+    }
     @DeleteMapping("/deleteLifePartnerProfile/{communityIdNo}")
     public ResponseWrapper<Void> deleteProfile(@PathVariable Integer communityIdNo) {
         lifePartnerProfileService.deleteProfile(communityIdNo);
