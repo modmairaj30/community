@@ -1,8 +1,11 @@
 package com.ve.community.services;
 
 import java.util.List;
+
+import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.ve.community.repository.CommunityJobRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +13,7 @@ import org.springframework.stereotype.Service;
 import com.ve.community.models.CommunityJob;
 import com.ve.community.payloads.request.CommunityJobRequest;
 import com.ve.community.payloads.response.CommunityJobResponse;
-import com.ve.community.repository.CommunityJobRepository;
+
 
 import jakarta.transaction.Transactional;
 
@@ -55,17 +58,16 @@ public class CommunityJobServiceImpl implements CommunityJobService {
 	}
 
 	@Override
-	public CommunityJob updateJob(Integer communityIdNo, CommunityJobRequest communityJobRequest) {
+	public CommunityJob updateJob( CommunityJobRequest communityJobRequest) {
 
 		//CommunityJob CommunityJob ;
-		CommunityJob existingCommunityJob= communityJobRepository.findById(communityIdNo).orElseThrow(() ->new RuntimeException("communityJob not " +
-				"found with id"+communityIdNo));
+		CommunityJob existingCommunityJob = communityJobRepository.findById(communityJobRequest.getCommunityIdNo()).orElseThrow(() -> new RuntimeException("communityJob not " +
+				"found with id" + communityJobRequest.getCommunityIdNo()));
 
 
+		modelMapper.map(communityJobRequest, existingCommunityJob);
 
-		modelMapper.map(communityJobRequest,existingCommunityJob);
-
-        return communityJobRepository.save(existingCommunityJob);
+		return communityJobRepository.save(existingCommunityJob);
 
 		//	return communityJobRepository.save(existingcommunityJob);
 
@@ -75,11 +77,45 @@ public class CommunityJobServiceImpl implements CommunityJobService {
 	@Override
 	public void deleteJob(Integer communityIdNo) {
 
-		CommunityJob existingJobCommunity = communityJobRepository.findById(communityIdNo).orElseThrow(() -> new RuntimeException("JobCommunity not found communityId"+communityIdNo));
+		Optional<CommunityJob> optionalCommunityJob = communityJobRepository.findByCommunityIdNoAndIsDeletedFalse(communityIdNo);
 
-		 communityJobRepository.delete(existingJobCommunity);
+		if (optionalCommunityJob.isPresent()) {
+			CommunityJob communityJob = optionalCommunityJob.get();
+			if (!communityJob.isDeleted()) {
+				communityJob.setDeleted(true);
+				communityJobRepository.save(communityJob);
 
+			} else{
+					throw new RuntimeException("community job not found or already deleted for communityId :" + communityIdNo);
+				}
+
+			}
+		else{
+			throw new RuntimeException("community is not found in community: " + communityIdNo);
+		}
+
+
+		}
+
+
+
+
+
+	public CommunityJob updateJobStatus(Integer communityIdNo, String statusType) {
+		CommunityJob communityJob = communityJobRepository.findById(communityIdNo)
+				.orElseThrow(() ->  new IllegalArgumentException("User not found with id: " + communityIdNo));
+
+
+		if (!statusType.equalsIgnoreCase("approved") &&
+				!statusType.equalsIgnoreCase("declined") &&
+				!statusType.equalsIgnoreCase("pending")) {
+			throw new IllegalArgumentException("Invalid status: " + statusType);
+		}
+
+		communityJob.setJobStatus(statusType.toLowerCase());
+		return communityJobRepository.save(communityJob);
 	}
-
-
 }
+
+
+

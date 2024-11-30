@@ -2,6 +2,8 @@ package com.ve.community.controllers;
 
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
+
 import com.ve.community.constants.CommonConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +25,8 @@ import jakarta.validation.Valid;
 public class CommunityJobController {
     @Autowired
     CommunityJobService communityJobService;
+    @Autowired
+    ModelMapper modelMapper;
     @GetMapping("/getAllJobs")
     public ResponseWrapper<List<CommunityJobResponse>> getAllJobs(){
         List<CommunityJobResponse> profilesList=communityJobService.getJob();
@@ -30,30 +34,47 @@ public class CommunityJobController {
     }
 
     @PostMapping("/saveJob")
-    public ResponseEntity<String> createJob(@Valid @RequestBody CommunityJobRequest communityJobRequest) {
+    public ResponseWrapper<Boolean> createJob(@Valid @RequestBody CommunityJobRequest communityJobRequest) {
         communityJobService.createJob(communityJobRequest);
-        return ResponseEntity.ok(CommonConstant.JOB_SUCCESSFULLY);
+        return new ResponseWrapper<>(HttpStatus.OK,CommonConstant.JOB_SUCCESSFULLY,true);
     }
     
-    @GetMapping("/job/{communityIdNo}")
-    public ResponseEntity<CommunityJob> getJobById(@PathVariable Integer communityIdNo) {
-        CommunityJob job = communityJobService.getJobById(communityIdNo);
-        return ResponseEntity.ok(job);
+    @GetMapping("/jobDetailsGetById/{communityIdNo}")
+    public ResponseWrapper<CommunityJobResponse> getJobById(@PathVariable Integer communityIdNo) {
+        CommunityJob communityJob =communityJobService.getJobById(communityIdNo);
+        CommunityJobResponse communityJobResponse = modelMapper.map(communityJob,CommunityJobResponse.class);
+        return new ResponseWrapper<>(HttpStatus.OK,"recieved all details successfully",communityJobResponse);
     }
 
-    @PutMapping("/updateJob/{communityIdNo}")
-    public ResponseEntity<String> updateCommunityJob(@PathVariable Integer communityIdNo,@RequestBody CommunityJobRequest communityJobRequest){
-       CommunityJob job= communityJobService.updateJob(communityIdNo,communityJobRequest);
-        return ResponseEntity.ok(CommonConstant.JOB_UPDATED_SUCCESSFULLY);
+    @PutMapping("/updateJob")
+    public ResponseWrapper<Boolean> updateCommunityJob(@RequestBody CommunityJobRequest communityJobRequest){
+       CommunityJob job= communityJobService.updateJob(communityJobRequest);
+        return new ResponseWrapper<>(HttpStatus.OK,CommonConstant.JOB_UPDATED_SUCCESSFULLY,true);
     }
 
     @DeleteMapping("/deleteJob/{communityIdNo}")
-    public  ResponseEntity<String> deleteCommuntyJob(@PathVariable Integer communityIdNo){
+    public  ResponseWrapper<Boolean> deleteCommuntyJob(@PathVariable Integer communityIdNo){
 
         communityJobService.deleteJob(communityIdNo);
 
-        return  ResponseEntity.ok(CommonConstant.JOB_DELETED_SUCCESSFULLY);
+        return  new ResponseWrapper<>(HttpStatus.OK,CommonConstant.JOB_DELETED_SUCCESSFULLY,true);
 
     }
+
+
+
+
+    @PutMapping("/admin/updateJobStatus/{communityIdNo}")
+    public ResponseWrapper<Boolean> updateCommuniyuJobStatus(@PathVariable Integer communityIdNo, @RequestParam String statusType) {
+
+            communityJobService.updateJobStatus(communityIdNo, statusType);
+            return new ResponseWrapper<>(HttpStatus.OK,"communityJob status updated successfully",true);
+
+
+
+    }
+
+
+
 
     }

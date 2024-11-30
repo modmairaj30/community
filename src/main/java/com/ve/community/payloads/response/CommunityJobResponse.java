@@ -16,7 +16,9 @@ public class CommunityJobResponse {
     private String contactNo;
     private String postBy;
     private String providerDesignation;
-    private Boolean activate;
+    private String jobStatus;
     private String userEmail;
     private String userId;
+    private boolean isDeleted =false;
+
 }
