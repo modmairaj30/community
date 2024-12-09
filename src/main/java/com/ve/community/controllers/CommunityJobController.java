@@ -30,7 +30,7 @@ public class CommunityJobController {
     @GetMapping("/getAllJobs")
     public ResponseWrapper<List<CommunityJobResponse>> getAllJobs(){
         List<CommunityJobResponse> profilesList=communityJobService.getJob();
-        return new ResponseWrapper(HttpStatus.OK,"",profilesList);
+        return new ResponseWrapper(HttpStatus.OK,"JobDetails fetched successfully",true,profilesList);
     }
 
     @PostMapping("/saveJob")
@@ -43,11 +43,11 @@ public class CommunityJobController {
     public ResponseWrapper<CommunityJobResponse> getJobById(@PathVariable Integer communityIdNo) {
         CommunityJob communityJob =communityJobService.getJobById(communityIdNo);
         CommunityJobResponse communityJobResponse = modelMapper.map(communityJob,CommunityJobResponse.class);
-        return new ResponseWrapper<>(HttpStatus.OK,"recieved all details successfully",communityJobResponse);
+        return new ResponseWrapper<>(HttpStatus.OK,"Job Details  fetched successfully",true,communityJobResponse);
     }
 
     @PutMapping("/updateJob")
-    public ResponseWrapper<Boolean> updateCommunityJob(@RequestBody CommunityJobRequest communityJobRequest){
+    public ResponseWrapper<Boolean> updateCommunityJob(@Valid @RequestBody CommunityJobRequest communityJobRequest){
        CommunityJob job= communityJobService.updateJob(communityJobRequest);
         return new ResponseWrapper<>(HttpStatus.OK,CommonConstant.JOB_UPDATED_SUCCESSFULLY,true);
     }
