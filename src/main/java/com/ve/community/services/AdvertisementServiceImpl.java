@@ -1,6 +1,8 @@
 package com.ve.community.services;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ve.community.models.Advertisement;
+import com.ve.community.models.LifePartnerProfile;
 import com.ve.community.payloads.request.AdvertisementRequest;
 import com.ve.community.payloads.response.AdvertisementResponse;
 import com.ve.community.repository.AdvertisementRepository;
@@ -61,12 +64,18 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
 	@Override
 	public void deleteAdvertisement(Integer id) {
-		Advertisement existingAd = advertisementRepository.findById(id)
-		        .orElseThrow(() -> new RuntimeException("Advertisement not found with id: " + id));
-		    
-		    advertisementRepository.delete(existingAd);
+		Optional<Advertisement> optionalAd = advertisementRepository.findByIdAndDeletedFalse(id);
+
+        if (optionalAd.isPresent()) {
+            Advertisement ad = optionalAd.get();
+            ad.setDeleted(true); // Mark as deleted
+            advertisementRepository.save(ad); // Save the updated profile
+        } else {
+            throw new RuntimeException("Advertisement not found or already deleted for  ID: " + id);
+        }}
 		
-	}
+		
+	
 
 	@Override
 	public void updateProfile(Integer id, AdvertisementRequest advertisementRequest) {
@@ -81,6 +90,32 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 			
 		
 	}
+
+	@Override
+	public void updateAdvertisementStatus(Integer id, String statusType, String statusValue) {
+Optional<Advertisement> optionalAd = advertisementRepository.findById(id);
+	    
+	    if (optionalAd.isEmpty()) {
+	        throw new IllegalArgumentException("Adertisement with ID " + id + " not found.");
+	    }
+
+	    Advertisement ad = optionalAd.get();
+	    
+	    if ("advertisementStatus".equalsIgnoreCase(statusType)) {
+	        // Validate the statusValue
+	        if (!Arrays.asList("approved", "pending", "rejected").contains(statusValue.toLowerCase())) {
+	            throw new IllegalArgumentException("Invalid status value: " + statusValue);
+	        }
+	        ad.setAdvertisementStatus(statusValue);
+	    } else {
+	        throw new IllegalArgumentException("Invalid status type for Ad: " + statusType);
+	    }
+
+	    advertisementRepository.save(ad);
+	}
+
+    }
 	
 
-}
+	
+

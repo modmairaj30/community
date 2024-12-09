@@ -12,7 +12,10 @@ private String imageUrl;
 
 private String link;
 
-private String userEmail;
+//private String userEmail;
 private String userId;
+private String contactNo;
+private String advertisementStatus;
+private boolean deleted = false;
 
 }

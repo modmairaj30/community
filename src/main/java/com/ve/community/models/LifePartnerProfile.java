@@ -14,103 +14,103 @@ public class LifePartnerProfile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer communityIdNo;
    
-    @NotBlank
-    @Pattern(regexp = "^(?=.*[A-Z])[a-zA-Z]+$",message = "Applicant name must contain only letters and at least one uppercase letter")
+   // @NotBlank
+   // @Pattern(regexp = "^(?=.*[A-Z])[a-zA-Z]+$",message = "Applicant name must contain only letters and at least one uppercase letter")
     @Column(name = "applicant_name")
     private String applicantName;
     
-    @NotBlank
-    @Pattern(regexp = "^[a-zA-Z]+$", message = "Relation must contain only letters")
+    //@NotBlank
+    //@Pattern(regexp = "^[a-zA-Z]+$", message = "Relation must contain only letters")
     @Column(name="myself_my_son_my_daughter_my_sister_my_brother")
     private String  myselfMySonMyDaughterMySisterMyBrother;
     
-    @NotBlank
-    @Pattern(regexp = "^(?=.*[A-Z])[a-zA-Z]+$",message = "Applicant name must contain only letters and at least one uppercase letter")
+    //@NotBlank
+    //@Pattern(regexp = "^(?=.*[A-Z])[a-zA-Z]+$",message = "Applicant name must contain only letters and at least one uppercase letter")
     @Column(name="name_of_the_person")
     private String nameOfThePerson;
-    @NotBlank
-    @Pattern(regexp = "^[a-zA-Z]+$", message = "field  must contain only letters")
+   // @NotBlank
+    //@Pattern(regexp = "^[a-zA-Z]+$", message = "field  must contain only letters")
     @Column(name="son_of_daughter_of")
     private String sonOfDaughterOf;
-    @Pattern(regexp = "^[a-zA-Z]+$", message = "subcast name must contain only letters")
-    @NotBlank
+  //  @Pattern(regexp = "^[a-zA-Z]+$", message = "subcast name must contain only letters")
+   // @NotBlank
     @Column(name="subcast")
     private String subcast;
-    @NotBlank
-    @Pattern(regexp = "^[a-zA-Z]+$", message = "gotra  must contain only letters")
+   // @NotBlank
+   // @Pattern(regexp = "^[a-zA-Z]+$", message = "gotra  must contain only letters")
     @Column(name="gotra(m)")
     private String gotra;
-    @NotBlank
-    @Pattern(regexp = "^[a-zA-Z]+$", message = "mother tongue must contain only letters")
+   // @NotBlank
+   // @Pattern(regexp = "^[a-zA-Z]+$", message = "mother tongue must contain only letters")
     @Column(name = "mother_tongue")
     private String motherTongue;
     
-    @NotBlank
+   // @NotBlank
     @Column(name = "present_address")
     private String presentAddress;
-    @NotBlank
+    //@NotBlank
     @Column(name="education")
     private String education;
     
-    @NotBlank
+    //@NotBlank
     @Column(name="professional_job_status")
     private String  professionalJobStatus;
     
-    @NotBlank
+    //@NotBlank
     @Column(name="company_business_name")
     private String companyBusinessName;
-    @NotBlank
+    //@NotBlank
     @Column(name="office_address")
     private String officeAddress;
-    @NotBlank
+    //@NotBlank
     @Column(name="designation")
     private String designation;
-    @NotBlank
-    @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Field must contain only letters and numbers")
+    //@NotBlank
+   // @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Field must contain only letters and numbers")
     @Column(name="salary_income")
     private String salaryIncome;
-    @NotBlank
+    //@NotBlank
     @Column(name="willing_to_same_subcast_other_subcast")
     private String willingToSameSubcastOtherSubcast;
-    @NotBlank
+   // @NotBlank
     @Column(name = "star")
     private String star;
-    @NotBlank
+    //@NotBlank
     @Column(name = "rasi")
     private String rasi;
-    @NotBlank
+    //@NotBlank
     @Column(name = "birth_country")
     private String birthCountry;
-    @NotBlank
+  //  @NotBlank
     @Column(name = "birth_state")
     private String birthState;
-    @NotBlank
+    //@NotBlank
     @Column(name = "birth_city_town")
     private String birthCityTown;
-    @NotBlank
+    //@NotBlank
     @Column(name = "birth_village_area")
     private String birthVillageArea;
-    @NotBlank
+  //  @NotBlank
     @Column(name = "birth_time")
     private String birthTime;
-    @NotBlank
+  //  @NotBlank
     @Column(name = "marital_status")
     private String maritalStatus;
-    @NotBlank
+   // @NotBlank
     @Column(name="height_weight")
     private String heightWeight;
-    @NotBlank
+  //  @NotBlank
     @Column(name="family_status_middle_upper_middle_rich_poor")
     private String  familyStatusMiddleUpperMiddleRichPoor;
-    @NotBlank
+    //@NotBlank
     @Column(name="family_type_joint_small_family_single")
     private String familyTypeJointSmallFamilySingle;
     
-    @NotBlank
+  //  @NotBlank
     @Column(name="family_members_mother")
     private String familyMemberMother;
    
-    @NotBlank
+    //@NotBlank
     @Column(name="family_members_father")
     private String familyMemberFather;
    
@@ -118,47 +118,47 @@ public class LifePartnerProfile {
     private String familyMemberBrothers;
     @Column(name="family_members_sisters")
     private String familyMembersSisters;
-    @NotBlank
+   // @NotBlank
     @Column(name="physical_status")
     private String physicalStatus;
-    @NotBlank
+    //@NotBlank
     @Column(name="citizenship")
     private String citizenship;
-    @NotBlank
-    @Pattern(
-    		regexp = "^[+]91[6-9][0-9]{9}$", 
-    	    message = "Field must follow indian pattern."
-    	)
+   // @NotBlank
+  //  @Pattern(
+  //  		regexp = "^[+]91[6-9][0-9]{9}$", 
+  //  	    message = "Field must follow indian pattern."
+   // 	)
     @Column(name="mobile_no")
     private String mobileNo;
-    @NotBlank
-    @Pattern(
-    		regexp = "^[+]91[6-9][0-9]{9}$",
-    	    message = "Field must follow indian pattern"
-    	)
+   // @NotBlank
+   // @Pattern(
+    //		regexp = "^[+]91[6-9][0-9]{9}$",
+    //	    message = "Field must follow indian pattern"
+    //	)
     @Column(name="w_a_no")
     private String whatsAppNo;
-    @NotBlank
-    @Pattern(
-            regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", 
-            message = "Invalid email address"
-        )
+   // @NotBlank
+   // @Pattern(
+   //         regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", 
+     //       message = "Invalid email address"
+   //     )
     @Column(name = "email_id")
     private String emailId;
-    @NotBlank
+   // @NotBlank
     @Column(name="write_your_requirements")
     private String writeYourRequirements;
-    @Pattern(regexp = "^(approved|pending|rejected)$", message = "Profile status must be 'approved', 'pending', or 'rejected'")
+   // @Pattern(regexp = "^(approved|pending|rejected)$", message = "Profile status must be 'approved', 'pending', or 'rejected'")
     @Column(name="profile_status")
     private String profileStatus;
-    @NotBlank
-    @Pattern(
-            regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", 
-            message = "Invalid email address"
-        )
+    //@NotBlank
+   // @Pattern(
+     //       regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", 
+         //   message = "Invalid email address"
+      //  )
     @Column(name="user_email")
     private String userEmail;
-    @NotBlank
+   // @NotBlank
     @Column(name="user_id")
     private String userId;
     @Column(nullable = false)
